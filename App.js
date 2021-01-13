@@ -1,26 +1,5 @@
 import React from "react";
-
-const clone = (obj) => {
-  return JSON.parse(JSON.stringify(obj));
-};
-
-// inspired by: https://usehooks.com/useLocalStorage/
-function useLocalStorage(key, initialValue) {
-  const [storage, setStorage] = React.useState(() => {
-    const item = window.localStorage.getItem(key);
-    if (!item) {
-      return initialValue;
-    }
-    return JSON.parse(item);
-  });
-
-  const setValue = (value) => {
-    setStorage(value);
-    window.localStorage.setItem(key, JSON.stringify(value));
-  };
-
-  return [storage, setValue];
-}
+import { useLocalStorage, clone } from "./utils";
 
 const Todo = ({ data, onComplete, onDelete, i }) => {
   return (
@@ -90,7 +69,15 @@ export default function () {
       />
       {todos &&
         todos.map((todo, i) => {
-          return <Todo key={i} i={i} data={todo} onComplete={completeItem} onDelete={deleteItem} />;
+          return (
+            <Todo
+              key={i}
+              i={i}
+              data={todo}
+              onComplete={completeItem}
+              onDelete={deleteItem}
+            />
+          );
         })}
     </div>
   );
