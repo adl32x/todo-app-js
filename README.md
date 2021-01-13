@@ -10,4 +10,4 @@ This is just a practice todo app made with React.
 
 `npm run start`
 
-and point your browser to: [http://localhost:1234]
+and point your browser to: http://localhost:1234
